@@ -1,13 +1,9 @@
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import stock.data.DataType;
 import stock.data.connection.FileDataConnection;
 import stock.data.connection.IDataConnection;
 import stock.data.connection.exception.DataConnectionException;
-import stock.guice.StockModule;
 
 import java.util.LinkedList;
 import java.util.List;

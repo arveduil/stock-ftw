@@ -5,10 +5,6 @@ import com.google.inject.name.Named;
 import stock.data.DataType;
 import stock.data.connection.exception.DataConnectionException;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.LinkedList;
