@@ -1,13 +1,32 @@
 package stock.data.connection;
 
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import stock.data.DataType;
+import stock.data.connection.exception.DataConnectionException;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class FileDataConnection implements IDataConnection<List<String>> {
 
-    public void connect() {
+    private String fileName;
 
+    private List<String> rawData = new LinkedList<>();
+
+    public void connect() throws DataConnectionException {
+        try (Stream<String> stream = Files.lines(Paths.get(getClass().getClassLoader().getResource(fileName).toURI()))) {
+            stream.forEach(line -> rawData.add(line));
+        } catch (Exception e) {
+            throw new DataConnectionException(e);
+        }
     }
 
     public DataType getDataType() {
@@ -15,6 +34,16 @@ public class FileDataConnection implements IDataConnection<List<String>> {
     }
 
     public List<String> getRawData() {
-        return null;
+        return rawData;
     }
+
+    @Inject
+    public void setFileName(@Named("fileConnectionFileName") String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
 }
