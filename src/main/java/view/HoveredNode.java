@@ -1,11 +1,11 @@
 package view;
 
-import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
 public class HoveredNode extends StackPane {
+
    public HoveredNode(float value) {
         setPrefSize(15, 15);
 

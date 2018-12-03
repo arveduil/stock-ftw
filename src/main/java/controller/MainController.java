@@ -1,7 +1,5 @@
 package controller;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,7 +12,6 @@ import stock.data.connection.IDataConnection;
 import stock.data.connection.exception.DataConnectionException;
 import stock.data.reader.DataUnit;
 import stock.data.reader.IDataReader;
-import stock.guice.StockModule;
 import view.HoveredNode;
 
 import java.text.ParseException;
@@ -27,7 +24,7 @@ public class MainController {
 
     @FXML
     private LineChart lineChart;
-    private List<ExchangeRate> rates = new LinkedList<ExchangeRate>();
+    private List<ExchangeRate> rates = new LinkedList<>();
 
     public void setData() {
         ObservableList<Data<String, Float>> observableList = FXCollections.observableArrayList(rates.stream().map(ExchangeRate::convertToData).collect(Collectors.toList()));
@@ -45,14 +42,13 @@ public class MainController {
     }
 
 
-    public void loadData(IDataConnection<List<String>> connection, IDataReader<List<String>> reader){
+    public <T> void loadData(IDataConnection<T> connection, IDataReader<T> reader){
 
         try {
             connection.connect();
             reader.makeDataUnits(connection.getRawData());
             Collection<DataUnit> units = reader.getDataUnits();
-            for (DataUnit unit :
-                    units) {
+            for (DataUnit unit : units) {
                 rates.add(new ExchangeRate(unit));
             }
         } catch (DataConnectionException | ParseException e) {
