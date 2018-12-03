@@ -3,11 +3,13 @@ package stock;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.chart.XYChart;
+import stock.data.reader.DataUnit;
 
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 
 public class ExchangeRate {
@@ -20,12 +22,19 @@ public class ExchangeRate {
         this.date = new SimpleObjectProperty<Date>(date);
     }
 
-    public ExchangeRate(String stringLine) throws ParseException {
+  /*  public ExchangeRate(String stringLine) throws ParseException {
         String splitRecord[] = stringLine.split(";");
         Date date =dateFormat.parse(splitRecord[0]);
         BigDecimal value = new BigDecimal(splitRecord[1]);
         this.value = new SimpleObjectProperty<BigDecimal>(value);
         this.date = new SimpleObjectProperty<Date>(date);
+    }*/
+
+    public ExchangeRate(DataUnit unit) throws ParseException {
+            Date date = dateFormat.parse(unit.getDate());
+            BigDecimal value = new BigDecimal(unit.getValue());
+            this.date = new SimpleObjectProperty<Date>(date);
+            this.value = new SimpleObjectProperty<BigDecimal>(value);
     }
 
     public BigDecimal getValue() {
