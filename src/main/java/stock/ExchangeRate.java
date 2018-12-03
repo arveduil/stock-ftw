@@ -9,32 +9,26 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
 import java.util.Date;
 
 public class ExchangeRate {
+
     private ObjectProperty< BigDecimal> value;
+
     private ObjectProperty<Date> date;
+
     private final DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 
     public ExchangeRate(BigDecimal value, Date date) {
-        this.value = new SimpleObjectProperty<BigDecimal>(value);
-        this.date = new SimpleObjectProperty<Date>(date);
+        this.value = new SimpleObjectProperty<>(value);
+        this.date = new SimpleObjectProperty<>(date);
     }
 
-  /*  public ExchangeRate(String stringLine) throws ParseException {
-        String splitRecord[] = stringLine.split(";");
-        Date date =dateFormat.parse(splitRecord[0]);
-        BigDecimal value = new BigDecimal(splitRecord[1]);
-        this.value = new SimpleObjectProperty<BigDecimal>(value);
-        this.date = new SimpleObjectProperty<Date>(date);
-    }*/
-
     public ExchangeRate(DataUnit unit) throws ParseException {
-            Date date = dateFormat.parse(unit.getDate());
-            BigDecimal value = new BigDecimal(unit.getValue());
-            this.date = new SimpleObjectProperty<Date>(date);
-            this.value = new SimpleObjectProperty<BigDecimal>(value);
+        Date date = dateFormat.parse(unit.getDate());
+        BigDecimal value = new BigDecimal(unit.getValue());
+        this.date = new SimpleObjectProperty<>(date);
+        this.value = new SimpleObjectProperty<>(value);
     }
 
     public BigDecimal getValue() {

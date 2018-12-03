@@ -1,10 +1,12 @@
 package stock.data.reader;
 
 public class DataUnit {
+
     private String date;
+
     private String value;
-    public DataUnit(String date, String value)
-    {
+
+    public DataUnit(String date, String value) {
         this.date = date;
         this.value = value;
     }
