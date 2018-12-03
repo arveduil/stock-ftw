@@ -10,6 +10,7 @@ import javafx.scene.chart.XYChart.Data;
 import stock.ExchangeRate;
 import stock.data.connection.IDataConnection;
 import stock.data.connection.exception.DataConnectionException;
+import stock.data.connection.exception.InvalidDataFormatException;
 import stock.data.reader.DataUnit;
 import stock.data.reader.IDataReader;
 import view.HoveredNode;
@@ -42,7 +43,7 @@ public class MainController {
     }
 
 
-    public <T> void loadData(IDataConnection<T> connection, IDataReader<T> reader){
+    public <T> void loadData(IDataConnection<T> connection, IDataReader<T> reader) {
 
         try {
             connection.connect();
@@ -51,7 +52,7 @@ public class MainController {
             for (DataUnit unit : units) {
                 rates.add(new ExchangeRate(unit));
             }
-        } catch (DataConnectionException | ParseException e) {
+        } catch (DataConnectionException | ParseException | InvalidDataFormatException e) {
             e.printStackTrace();
         }
     }
