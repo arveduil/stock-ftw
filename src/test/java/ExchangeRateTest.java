@@ -1,8 +1,7 @@
 import javafx.scene.chart.XYChart;
 import org.junit.Test;
-import stock.ExchangeRate;
-import stock.data.DataType;
-import stock.data.reader.DataUnit;
+import ftw.stock.ExchangeRate;
+import ftw.stock.data.reader.DataUnit;
 
 import java.math.BigDecimal;
 import java.text.DateFormat;

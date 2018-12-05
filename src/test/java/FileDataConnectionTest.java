@@ -1,9 +1,9 @@
 import org.junit.Before;
 import org.junit.Test;
-import stock.data.DataType;
-import stock.data.connection.FileDataConnection;
-import stock.data.connection.IDataConnection;
-import stock.data.connection.exception.DataConnectionException;
+import ftw.stock.data.DataType;
+import ftw.stock.data.connection.FileDataConnection;
+import ftw.stock.data.connection.IDataConnection;
+import ftw.stock.data.connection.exception.DataConnectionException;
 
 import java.util.LinkedList;
 import java.util.List;

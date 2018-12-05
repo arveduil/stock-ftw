@@ -1,4 +1,4 @@
-package stock.data;
+package ftw.stock.data;
 
 public enum DataType {
 

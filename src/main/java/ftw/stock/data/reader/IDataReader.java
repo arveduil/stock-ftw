@@ -1,8 +1,7 @@
-package stock.data.reader;
+package ftw.stock.data.reader;
 
-import stock.data.connection.exception.InvalidDataFormatException;
+import ftw.stock.data.connection.exception.InvalidDataFormatException;
 
-import java.text.ParseException;
 import java.util.Collection;
 
 public interface IDataReader<T> {

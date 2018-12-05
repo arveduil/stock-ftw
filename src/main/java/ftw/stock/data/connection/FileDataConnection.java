@@ -1,9 +1,9 @@
-package stock.data.connection;
+package ftw.stock.data.connection;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import stock.data.DataType;
-import stock.data.connection.exception.DataConnectionException;
+import ftw.stock.data.DataType;
+import ftw.stock.data.connection.exception.DataConnectionException;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;

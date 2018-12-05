@@ -1,16 +1,16 @@
-package sample;
+package ftw.sample;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import controller.MainController;
+import ftw.controller.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import stock.data.connection.IDataConnection;
-import stock.data.reader.IDataReader;
-import stock.guice.StockModule;
+import ftw.stock.data.connection.IDataConnection;
+import ftw.stock.data.reader.IDataReader;
+import ftw.stock.guice.StockModule;
 
 import java.io.IOException;
 
@@ -30,7 +30,7 @@ public class Main extends Application {
 
     private void initApplication() throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getClassLoader().getResource("view/MainView.fxml"));
+        loader.setLocation(getClass().getClassLoader().getResource("ftw/view/MainView.fxml"));
         BorderPane rootLayout = loader.load();
 
         Scene scene = new Scene(rootLayout);

@@ -1,4 +1,4 @@
-package controller;
+package ftw.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -7,13 +7,13 @@ import javafx.scene.Cursor;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
-import stock.ExchangeRate;
-import stock.data.connection.IDataConnection;
-import stock.data.connection.exception.DataConnectionException;
-import stock.data.connection.exception.InvalidDataFormatException;
-import stock.data.reader.DataUnit;
-import stock.data.reader.IDataReader;
-import view.HoveredNode;
+import ftw.stock.ExchangeRate;
+import ftw.stock.data.connection.IDataConnection;
+import ftw.stock.data.connection.exception.DataConnectionException;
+import ftw.stock.data.connection.exception.InvalidDataFormatException;
+import ftw.stock.data.reader.DataUnit;
+import ftw.stock.data.reader.IDataReader;
+import ftw.view.HoveredNode;
 
 import java.text.ParseException;
 import java.util.Collection;

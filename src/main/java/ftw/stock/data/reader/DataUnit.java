@@ -1,4 +1,4 @@
-package stock.data.reader;
+package ftw.stock.data.reader;
 
 public class DataUnit {
 

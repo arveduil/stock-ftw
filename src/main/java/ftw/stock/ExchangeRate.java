@@ -1,9 +1,9 @@
-package stock;
+package ftw.stock;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.chart.XYChart;
-import stock.data.reader.DataUnit;
+import ftw.stock.data.reader.DataUnit;
 
 import java.math.BigDecimal;
 import java.text.DateFormat;

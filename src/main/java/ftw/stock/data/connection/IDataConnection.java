@@ -1,7 +1,7 @@
-package stock.data.connection;
+package ftw.stock.data.connection;
 
-import stock.data.DataType;
-import stock.data.connection.exception.DataConnectionException;
+import ftw.stock.data.DataType;
+import ftw.stock.data.connection.exception.DataConnectionException;
 
 public interface IDataConnection<T> {
 

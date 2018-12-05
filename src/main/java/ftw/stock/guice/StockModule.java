@@ -1,11 +1,11 @@
-package stock.guice;
+package ftw.stock.guice;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
-import stock.data.connection.FileDataConnection;
-import stock.data.connection.IDataConnection;
-import stock.data.reader.FileDataReader;
-import stock.data.reader.IDataReader;
+import ftw.stock.data.connection.FileDataConnection;
+import ftw.stock.data.connection.IDataConnection;
+import ftw.stock.data.reader.FileDataReader;
+import ftw.stock.data.reader.IDataReader;
 
 public class StockModule extends AbstractModule {
 

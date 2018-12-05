@@ -1,4 +1,4 @@
-package stock.data.connection.exception;
+package ftw.stock.data.connection.exception;
 
 public class InvalidDataFormatException extends Exception {
 
