@@ -23,6 +23,7 @@ import ftw.stock.data.reader.IDataReader;
 import ftw.view.HoveredNode;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -61,8 +62,8 @@ public class MainController {
             public void handle(MouseEvent event) {
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(Main.class.getClassLoader().getResource("ftw/view/CreateStrategyView.fxml"));
-                    BorderPane page = (BorderPane) fxmlLoader.load();
+                    fxmlLoader.setLocation(Main.class.getClassLoader().getResource("ftw/view/CreateStrategyViewPopUp.fxml"));
+                    AnchorPane page = (AnchorPane) fxmlLoader.load();
                     Stage stage = new Stage();
                     Scene scene = new Scene(page);
                     stage.setTitle("New Window");
