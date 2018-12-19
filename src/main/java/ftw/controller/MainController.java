@@ -22,6 +22,9 @@ import ftw.stock.data.reader.DataUnit;
 import ftw.stock.data.reader.IDataReader;
 import ftw.view.HoveredNode;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -40,7 +43,7 @@ public class MainController {
     @FXML
     private Button createStrategyButton;
 
-    public void setData() {
+    public void setData(Stage primaryStage) {
         ObservableList<Data<String, Float>> observableList = FXCollections.observableArrayList(rates.stream().map(ExchangeRate::convertToData).collect(Collectors.toList()));
         lineChart.setCursor(Cursor.CROSSHAIR);
         lineChart.setTitle("Exchange history");
@@ -53,6 +56,30 @@ public class MainController {
         series.setName("Exchange rate");
 
         lineChart.getData().add(series);
+        createStrategyButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(Main.class.getClassLoader().getResource("ftw/view/CreateStrategyView.fxml"));
+                    BorderPane page = (BorderPane) fxmlLoader.load();
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(page);
+                    stage.setTitle("New Window");
+                    stage.initModality(Modality.WINDOW_MODAL);
+                    stage.initOwner(primaryStage);
+                    stage.setScene(scene);
+                    CreateStrategyController presenter = fxmlLoader.getController();
+                    presenter.setStage(stage);
+                    stage.showAndWait();
+
+                    ((Node)(event.getSource())).getScene().getWindow().hide();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
 
@@ -70,38 +97,28 @@ public class MainController {
         }
     }
 
-    public void loadStrategyView(){
-        Stage strategyStage = new Stage();
+   /* public void loadStrategyView() {
+     *//*   Stage strategyStage = new Stage();
 
-/*
         strategyStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getClassLoader().getResource("ftw/view/CreateStrategyView.fxml"));
-        BorderPane rootLayout = loader.load();
+        BorderPane rootLayout = null;
+        try {
+            rootLayout = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         Scene scene = new Scene(rootLayout);
         strategyStage.setScene(scene);
         strategyStage.show();
-*/
+    }*//*
 
         createStrategyButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                Parent root;
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(Main.class.getClassLoader().getResource("ftw/view/CreateStrategyView.fxml"));
-                    Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-                    Stage stage = new Stage();
-                    stage.setTitle("New Window");
-                    stage.setScene(scene);
-                    stage.show();
 
-                    ((Node)(event.getSource())).getScene().getWindow().hide();
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         });
-    }
+    }*/
 }

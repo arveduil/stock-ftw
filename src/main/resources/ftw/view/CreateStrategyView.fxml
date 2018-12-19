@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="195.0" prefWidth="659.0" type="HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ftw.controller.CreateStrategyController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="195.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ftw.controller.CreateStrategyController">
    <children>
       <Pane prefHeight="380.0" prefWidth="27.0" />
       <VBox prefHeight="562.0" prefWidth="558.0">
@@ -47,4 +47,4 @@
          </children>
       </VBox>
    </children>
-</fx:root>
+</BorderPane>
