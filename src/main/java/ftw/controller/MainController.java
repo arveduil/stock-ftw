@@ -1,9 +1,16 @@
 package ftw.controller;
 
+import ftw.sample.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
@@ -14,7 +21,10 @@ import ftw.stock.data.connection.exception.InvalidDataFormatException;
 import ftw.stock.data.reader.DataUnit;
 import ftw.stock.data.reader.IDataReader;
 import ftw.view.HoveredNode;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -26,6 +36,9 @@ public class MainController {
     @FXML
     private LineChart lineChart;
     private List<ExchangeRate> rates = new LinkedList<>();
+
+    @FXML
+    private Button createStrategyButton;
 
     public void setData() {
         ObservableList<Data<String, Float>> observableList = FXCollections.observableArrayList(rates.stream().map(ExchangeRate::convertToData).collect(Collectors.toList()));
@@ -55,5 +68,40 @@ public class MainController {
         } catch (DataConnectionException | ParseException | InvalidDataFormatException e) {
             e.printStackTrace();
         }
+    }
+
+    public void loadStrategyView(){
+        Stage strategyStage = new Stage();
+
+/*
+        strategyStage.initModality(Modality.APPLICATION_MODAL);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getClassLoader().getResource("ftw/view/CreateStrategyView.fxml"));
+        BorderPane rootLayout = loader.load();
+
+        Scene scene = new Scene(rootLayout);
+        strategyStage.setScene(scene);
+        strategyStage.show();
+*/
+
+        createStrategyButton.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                Parent root;
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(Main.class.getClassLoader().getResource("ftw/view/CreateStrategyView.fxml"));
+                    Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+                    Stage stage = new Stage();
+                    stage.setTitle("New Window");
+                    stage.setScene(scene);
+                    stage.show();
+
+                    ((Node)(event.getSource())).getScene().getWindow().hide();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
