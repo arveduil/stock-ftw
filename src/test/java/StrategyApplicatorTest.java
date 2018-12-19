@@ -3,6 +3,7 @@ import ftw.strategy.DecisionType;
 import ftw.strategy.applicator.StrategyApplicator;
 import ftw.strategy.model.Strategy;
 import ftw.strategy.model.StrategyResult;
+import ftw.strategy.model.exception.InvalidStrategyValuesException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,7 +13,7 @@ import java.util.*;
 public class StrategyApplicatorTest {
 
     @Test
-    public void singleStrategyApplicationTest() {
+    public void singleStrategyApplicationTest() throws InvalidStrategyValuesException {
         List<ExchangeRate> exchangeRates = Arrays.asList(new ExchangeRate(new BigDecimal(20.0), new Date()),
                                                          new ExchangeRate(new BigDecimal(25.0), new Date()),
                                                          new ExchangeRate(new BigDecimal(50.0), new Date()));
@@ -31,7 +32,7 @@ public class StrategyApplicatorTest {
     }
 
     @Test
-    public void doubleStrategyApplicationTest() {
+    public void doubleStrategyApplicationTest() throws InvalidStrategyValuesException {
         List<ExchangeRate> exchangeRates = Arrays.asList(new ExchangeRate(new BigDecimal(20.0), new Date()),
                                                          new ExchangeRate(new BigDecimal(25.0), new Date()),
                                                          new ExchangeRate(new BigDecimal(50.0), new Date()),
