@@ -1,6 +1,7 @@
 package ftw.strategy.applicator;
 
 import ftw.stock.ExchangeRate;
+import ftw.strategy.DecisionType;
 import ftw.strategy.model.Strategy;
 import ftw.strategy.model.StrategyResult;
 
@@ -17,9 +18,12 @@ public class StrategyApplicator implements IStrategyApplicator {
 
     private Map<Strategy, StrategyResult> strategyResults = new HashMap<Strategy, StrategyResult>();
 
-    public StrategyApplicator(List<ExchangeRate> data, List<Strategy> strategies) {
+    private BigDecimal budget;
+
+    public StrategyApplicator(List<ExchangeRate> data, List<Strategy> strategies, BigDecimal initialBudget) {
         this.data = data;
         this.strategies = strategies;
+        this.budget = initialBudget;
     }
 
     public void setData(List<ExchangeRate> data) {
@@ -28,6 +32,10 @@ public class StrategyApplicator implements IStrategyApplicator {
 
     public void setStrategies(List<Strategy> strategies) {
         this.strategies = strategies;
+    }
+
+    public void setInitialBudget(BigDecimal initialBudget) {
+        this.budget = initialBudget;
     }
 
     public void applyStrategies() {
@@ -48,7 +56,12 @@ public class StrategyApplicator implements IStrategyApplicator {
             BigDecimal endValue = data.get(i + checkInterval).getValue();
             BigDecimal change = endValue.subtract(startValue).divide(startValue, BigDecimal.ROUND_HALF_EVEN);
             if (change.compareTo(strategy.getChange()) > 0) {
-                strategyResult = new StrategyResult(change.toString());
+                if (strategy.getDecisionType() == DecisionType.BUY) {
+                    budget = budget.subtract(budget.multiply(strategy.getInvestmentPercentage().multiply(endValue)));
+                } else if (strategy.getDecisionType() == DecisionType.SELL) {
+                    budget = budget.add(budget.multiply(strategy.getInvestmentPercentage().multiply(endValue)));
+                }
+                strategyResult = new StrategyResult(budget);
             }
         }
 

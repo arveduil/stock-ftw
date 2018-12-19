@@ -1,14 +1,16 @@
 package ftw.strategy.model;
 
+import java.math.BigDecimal;
+
 public class StrategyResult {
 
-    private String result;
+    private BigDecimal result;
 
-    public StrategyResult(String result) {
+    public StrategyResult(BigDecimal result) {
         this.result = result;
     }
 
-    public String getResult() {
+    public BigDecimal getResult() {
         return result;
     }
 }
