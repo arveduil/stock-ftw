@@ -6,6 +6,7 @@ import ftw.strategy.model.StrategyResult;
 import ftw.strategy.model.exception.InvalidStrategyValuesException;
 import org.junit.Assert;
 import org.junit.Test;
+import org.omg.CORBA.DynAnyPackage.Invalid;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -57,5 +58,20 @@ public class StrategyApplicatorTest {
 
         Assert.assertEquals(strategyResult.getResult(), expected);
         Assert.assertEquals(strategyResult2.getResult(), expected2);
+    }
+
+    @Test(expected = InvalidStrategyValuesException.class)
+    public void invalidChangeIntervalTest() throws InvalidStrategyValuesException {
+        Strategy strategy = new Strategy(-1, new BigDecimal(0.5), DecisionType.SELL, new BigDecimal(0.2));
+    }
+
+    @Test(expected = InvalidStrategyValuesException.class)
+    public void invalidChangeTest() throws InvalidStrategyValuesException {
+        Strategy strategy = new Strategy(1, new BigDecimal(1.5), DecisionType.SELL, new BigDecimal(0.2));
+    }
+
+    @Test(expected = InvalidStrategyValuesException.class)
+    public void invalidInvestmentPercentageTest() throws InvalidStrategyValuesException {
+        Strategy strategy = new Strategy(1, new BigDecimal(0.5), DecisionType.SELL, new BigDecimal(2.2));
     }
 }
