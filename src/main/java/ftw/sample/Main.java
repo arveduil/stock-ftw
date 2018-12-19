@@ -42,6 +42,7 @@ public class Main extends Application {
         IDataReader reader = setupReader();
         controller.loadData(connection, reader);
         controller.setData();
+        controller.loadStrategyView();
     }
 
     private IDataConnection setupConnector() {

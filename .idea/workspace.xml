@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Data Connection basic implementation">
-      <change afterPath="$PROJECT_DIR$/src/main/java/stock/data/connection/exception/InvalidDataFormatException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ftw/controller/CreateStrategyController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/stock/data/reader/FileDataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/stock/data/reader/FileDataReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/stock/data/reader/IDataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/stock/data/reader/IDataReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftw/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftw/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftw/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftw/sample/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ftw/view/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ftw/view/MainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/sample.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/MainView.fxml" beforeDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,56 +61,141 @@
     <ui_properties converted="true" />
     <breakpoint_rules converted="true" />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="1303241275">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.26" value="1" />
+          <entry key="project.open.time.27" value="1" />
+          <entry key="project.open.time.28" value="1" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.opened" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="class" value="1" />
+          <entry key="fxml" value="2" />
+          <entry key="java" value="13" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CLASS" value="1" />
+          <entry key="JAVA" value="13" />
+          <entry key="XML" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="fxml" value="63" />
+          <entry key="java" value="249" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="249" />
+          <entry key="XML" value="63" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sample/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="590">
-              <caret line="43" column="29" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#694#695#0" expanded="true" />
-                <element signature="e#722#723#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controller/MainController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="55" column="32" lean-forward="true" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/stock/data/connection/FileDataConnection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="42" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/stock/data/reader/FileDataReader.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ftw/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="24" column="48" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
-              <folding>
-                <element signature="e#853#854#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="221">
+              <caret line="33" column="29" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="29" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ftw/controller/MainController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="478">
+              <caret line="92" selection-start-line="92" selection-end-line="92" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Class.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="441" selection-start-line="441" selection-end-line="441" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="3096" selection-start-line="3096" selection-end-line="3096" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/net/URLClassLoader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="380" selection-start-line="380" selection-end-line="380" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/com/sun/glass/ui/win/WinApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="176" selection-start-line="176" selection-end-line="176" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/jre/lib/rt.jar!/sun/misc/Launcher.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="199" selection-start-line="199" selection-end-line="199" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/ftw/view/CreateStrategyView.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="128">
+              <caret line="9" column="269" selection-start-line="9" selection-start-column="269" selection-end-line="9" selection-end-column="269" />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ftw/controller/CreateStrategyController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="37" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/ftw/view/MainView.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="156">
+              <caret line="13" column="120" selection-start-line="13" selection-start-column="120" selection-end-line="13" selection-end-column="165" />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
     </leaf>
@@ -168,8 +255,18 @@
         <option value="$PROJECT_DIR$/src/main/java/stock/data/connection/exception/InvalidDataFormatException.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/MainController.java" />
         <option value="$PROJECT_DIR$/src/main/java/stock/data/reader/FileDataReader.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/ftw/view/MainView.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/ftw/sample/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/ftw/view/SelectView.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/ftw/controller/MainController.java" />
       </list>
     </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -180,10 +277,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="72" />
-    <option name="y" value="-18" />
-    <option name="width" value="1386" />
-    <option name="height" value="788" />
+    <option name="x" value="676" />
+    <option name="width" value="697" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -281,6 +377,15 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="ftw" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="stock-ftw" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stock-ftw" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="ftw" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -289,6 +394,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="ftw" type="462c0819:PsiDirectoryNode" />
               <item name="sample" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -297,64 +403,8 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="ftw" type="462c0819:PsiDirectoryNode" />
               <item name="stock" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="stock-ftw" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stock-ftw" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="stock" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="stock-ftw" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stock-ftw" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="stock" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="connection" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="stock-ftw" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stock-ftw" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="stock" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="connection" type="462c0819:PsiDirectoryNode" />
-              <item name="exception" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="stock-ftw" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stock-ftw" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="stock" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="reader" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="stock-ftw" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stock-ftw" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="stock" type="462c0819:PsiDirectoryNode" />
-              <item name="guice" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="stock-ftw" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stock-ftw" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="stock-ftw" type="b2602c69:ProjectViewProjectNode" />
@@ -369,6 +419,15 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="ftw" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="stock-ftw" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stock-ftw" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="ftw" type="462c0819:PsiDirectoryNode" />
               <item name="sample" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -377,6 +436,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="ftw" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -384,13 +444,6 @@
               <item name="stock-ftw" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="stock-ftw" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stock-ftw" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -410,7 +463,7 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543853617150" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545218502653" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -444,7 +497,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Main (1)">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -457,10 +510,24 @@
       <Host>localhost</Host>
       <Port>5050</Port>
     </configuration>
-    <configuration default="true" type="Applet">
+    <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HEIGHT" value="0" />
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <option name="WIDTH" value="0" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ftw.sample.Main" />
+      <module name="stock-ftw" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ftw.sample.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -553,7 +620,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="TestNG">
+    <configuration default="true" type="TestNG" factoryName="TestNG">
       <option name="VM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="TEST_SEARCH_SCOPE">
@@ -565,11 +632,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
       <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file enabled="true" id="idea.log" />
+      <predefined_log_file id="idea.log" enabled="true" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -580,9 +647,11 @@
       <item itemvalue="JUnit.ExchangeRateTest" />
       <item itemvalue="JUnit.ExchangeRateTest.createExchangeRateFromStringTest" />
       <item itemvalue="JUnit.ExchangeRateTest.convertExchangeRateToData" />
+      <item itemvalue="Application.Main (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (1)" />
         <item itemvalue="JUnit.ExchangeRateTest" />
         <item itemvalue="JUnit.ExchangeRateTest.convertExchangeRateToData" />
         <item itemvalue="JUnit.ExchangeRateTest.createExchangeRateFromStringTest" />
@@ -607,6 +676,10 @@
       <workItem from="1543530393809" duration="32001000" />
       <workItem from="1543751912180" duration="11474000" />
       <workItem from="1543852782177" duration="799000" />
+      <workItem from="1544023579653" duration="2005000" />
+      <workItem from="1544689420107" duration="623000" />
+      <workItem from="1544920140342" duration="110000" />
+      <workItem from="1545174407419" duration="5242000" />
     </task>
     <task id="LOCAL-00001" summary="Guice integration">
       <created>1543511028735</created>
@@ -679,13 +752,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53547000" />
+    <option name="totallyTimeSpent" value="61527000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="66" y="-11" width="1855" height="1092" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.23021583" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.13859275" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -694,9 +767,9 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.3295082" />
-      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.31138977" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.32786885" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.3286334" />
+      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.46637744" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.3275488" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" />
@@ -708,7 +781,7 @@
       <window_info anchor="bottom" id="Changes" order="13" />
       <window_info anchor="bottom" id="Profiler" order="14" />
       <window_info anchor="bottom" id="Event Log" order="15" weight="0.3295082" />
-      <window_info anchor="bottom" id="Messages" order="16" weight="0.28944618" />
+      <window_info anchor="bottom" id="Messages" order="16" weight="0.16721311" />
       <window_info anchor="right" id="Maven" order="0" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
@@ -720,6 +793,7 @@
       <window_info anchor="right" id="Database" order="8" />
       <window_info anchor="right" id="Palette" order="9" />
       <window_info anchor="right" id="Maven Projects" order="10" />
+      <window_info anchor="right" id="PlantUML" order="11" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -735,6 +809,9 @@
       </list>
     </option>
   </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
@@ -743,6 +820,18 @@
     <MESSAGE value="Little fixes and libraries" />
     <MESSAGE value="Data Connection basic implementation" />
     <option name="LAST_COMMIT_MESSAGE" value="Data Connection basic implementation" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ftw/controller/MainController.java</url>
+          <line>90</line>
+          <properties />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -798,31 +887,19 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java" />
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/lang/ClassLoader.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/nio/file/Files.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/text/SimpleDateFormat.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/chart/LineChart.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/view/MainView.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/stage/Stage.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/view/MainScene.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/view/SceneCreatoy.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Thread.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/fxml/FXMLLoader.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Object.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/ClassLoader.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/sample/Controller.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/view/graph_view.fxml" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/chart/CategoryAxis.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/chart/Axis.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/application/Application.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/javax/xml/crypto/Data.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/sample/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/sample/sample.fxml" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
@@ -835,7 +912,6 @@
         <state relative-caret-position="-102" />
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/chart/XYChart.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/view/HoveredThresholdNode.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/view/SceneCreator.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/view/GraphViewer.java" />
@@ -844,30 +920,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="28" column="5" selection-start-line="24" selection-start-column="31" selection-end-line="28" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/view/MainView.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/view/HoveredNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/view/MainView.fxml" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/HoveredNode.java" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/data.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -875,130 +932,129 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/stock/data/DataType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/stock/data/DataType.java" />
     <entry file="file://$PROJECT_DIR$/src/test/java/ExchangeRateTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="30" column="51" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/stock/ExchangeRate.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/stock/ExchangeRate.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/stock/data/reader/DataUnit.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/stock/guice/StockModule.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/stock/data/connection/exception/DataConnectionException.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/stock/data/reader/IDataReader.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/stock/data/connection/exception/InvalidDataFormatException.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/stock/data/connection/IDataConnection.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Main.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/stock/data/connection/FileDataConnection.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/stock/data/reader/FileDataReader.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/MainController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftw/stock/data/connection/FileDataConnection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="19" column="54" lean-forward="true" selection-start-line="19" selection-start-column="54" selection-end-line="19" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/stock/data/reader/DataUnit.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/chart/XYChart.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-          <folding>
-            <element signature="e#309#310#0" expanded="true" />
-            <element signature="e#336#337#0" expanded="true" />
-            <element signature="e#386#387#0" expanded="true" />
-            <element signature="e#418#419#0" expanded="true" />
-            <element signature="e#449#450#0" expanded="true" />
-            <element signature="e#477#478#0" expanded="true" />
-            <element signature="e#518#519#0" expanded="true" />
-            <element signature="e#552#553#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="22032">
+          <caret line="1434" column="30" selection-start-line="1434" selection-start-column="30" selection-end-line="1434" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/stock/guice/StockModule.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftw/stock/ExchangeRate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/stock/data/connection/exception/DataConnectionException.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/collections/ObservableList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="38" lean-forward="true" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
+        <state relative-caret-position="17">
+          <caret line="45" column="17" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Main.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/com/sun/glass/ui/win/WinApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="590">
-          <caret line="43" column="29" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#694#695#0" expanded="true" />
-            <element signature="e#722#723#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="132">
+          <caret line="176" selection-start-line="176" selection-end-line="176" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/stock/data/reader/IDataReader.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/jre/lib/rt.jar!/sun/misc/Launcher.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="132">
+          <caret line="199" selection-start-line="199" selection-end-line="199" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/stock/data/connection/exception/InvalidDataFormatException.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/ClassLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-          <folding>
-            <element signature="e#238#239#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="124">
+          <caret line="356" selection-start-line="356" selection-end-line="356" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/stock/data/connection/IDataConnection.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/net/URLClassLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="132">
+          <caret line="380" selection-start-line="380" selection-end-line="380" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/MainController.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Class.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="55" column="32" lean-forward="true" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
+        <state relative-caret-position="133">
+          <caret line="441" selection-start-line="441" selection-end-line="441" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/stock/data/connection/FileDataConnection.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/ftw/view/MainView.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="42" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="156">
+          <caret line="13" column="120" selection-start-line="13" selection-start-column="120" selection-end-line="13" selection-end-column="165" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/ftw/view/CreateStrategyView.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="9" column="269" selection-start-line="9" selection-start-column="269" selection-end-line="9" selection-end-column="269" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="3096" selection-start-line="3096" selection-end-line="3096" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/stock/data/reader/FileDataReader.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftw/controller/CreateStrategyController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="24" column="48" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
-          <folding>
-            <element signature="e#853#854#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="34">
+          <caret line="2" column="37" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftw/controller/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="478">
+          <caret line="92" selection-start-line="92" selection-end-line="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftw/sample/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="33" column="29" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="29" />
         </state>
       </provider>
     </entry>
