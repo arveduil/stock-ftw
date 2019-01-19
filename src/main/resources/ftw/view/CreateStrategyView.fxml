@@ -1,72 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Box?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="195.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ftw.controller.CreateStrategyController">
+<AnchorPane prefHeight="160.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ftw.controller.CreateStrategyPresenter">
    <children>
-      <Pane prefHeight="380.0" prefWidth="27.0" />
-      <VBox prefHeight="562.0" prefWidth="558.0">
-         <children>
-            <Box />
-            <GridPane prefHeight="161.0" prefWidth="558.0">
+      <BorderPane prefHeight="200.0" prefWidth="600.0">
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Change:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <TextField prefHeight="25.0" prefWidth="27.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <ComboBox prefHeight="25.0" prefWidth="71.0" promptText="Buy" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Decision:" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="How much %?" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-                  <TextField prefHeight="25.0" prefWidth="40.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Check every:" GridPane.rowIndex="2" />
-                  <TextField GridPane.rowIndex="3" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="OK" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Create strategy:" wrappingWidth="411.13671875" />
+                  <Label prefHeight="32.0" prefWidth="237.0" text="Only numeric values allowed:" />
+                  <HBox prefHeight="76.0" prefWidth="582.0">
+                     <children>
+                        <VBox prefHeight="77.0" prefWidth="102.0">
+                           <children>
+                              <Label prefWidth="100.0" text="Check interval:" />
+                              <TextField fx:id="checkIntervalTextField" prefHeight="25.0" prefWidth="70.0">
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin></TextField>
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="150.0">
+                           <children>
+                              <Label prefWidth="150.0" text="Change (beetween 0 and 1)" />
+                              <TextField fx:id="changeTextField" prefHeight="25.0" prefWidth="68.0">
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" />
+                                 </padding>
+                                 <VBox.margin>
+                                    <Insets left="40.0" right="40.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Decision" />
+                              <ComboBox fx:id="decisionComboBox" prefWidth="80.0" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label prefWidth="200.0" text="Investment % (beetween 0 and 1)" />
+                              <TextField fx:id="investmentPercentageTextField" prefHeight="25.0" prefWidth="51.0">
+                                 <VBox.margin>
+                                    <Insets left="70.0" right="70.0" />
+                                 </VBox.margin></TextField>
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </padding>
+                  </HBox>
+                  <HBox prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="okButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleOkAction" prefHeight="25.0" prefWidth="78.0" text="OK" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin></Button>
+                        <Label fx:id="messageLabel" prefHeight="33.0" prefWidth="413.0">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="50.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding></Label>
+                     </children>
+                  </HBox>
                </children>
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
-         </children>
-      </VBox>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <BorderPane.margin>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </BorderPane.margin>
+            </VBox>
+         </center>
+      </BorderPane>
    </children>
-   <center>
-      <GridPane BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-      </GridPane>
-   </center>
-</BorderPane>
+</AnchorPane>

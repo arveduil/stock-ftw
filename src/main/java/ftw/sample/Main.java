@@ -21,6 +21,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;
+
         initApplication();
     }
 
@@ -42,9 +43,6 @@ public class Main extends Application {
         IDataReader reader = setupReader();
         controller.loadData(connection, reader);
         controller.setData(primaryStage);
-/*
-        controller.loadStrategyView();
-*/
     }
 
     private IDataConnection setupConnector() {

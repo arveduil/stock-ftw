@@ -3,7 +3,10 @@ package ftw.strategy.applicator;
 import ftw.stock.ExchangeRate;
 import ftw.strategy.DecisionType;
 import ftw.strategy.model.Strategy;
+import ftw.strategy.model.SimulationInitialValues;
 import ftw.strategy.model.StrategyResult;
+import ftw.strategy.model.exception.InvalidSimulationInitialValuesException;
+import ftw.strategy.model.validator.SimulationInitialValuesValidator;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -20,10 +23,14 @@ public class StrategyApplicator implements IStrategyApplicator {
 
     private BigDecimal budget;
 
-    public StrategyApplicator(List<ExchangeRate> data, List<Strategy> strategies, BigDecimal initialBudget) {
+    private SimulationInitialValues simulationInitialValues;
+
+    public StrategyApplicator(List<ExchangeRate> data, List<Strategy> strategies, BigDecimal budget) {
         this.data = data;
         this.strategies = strategies;
-        this.budget = initialBudget;
+       //this.simulationInitialValues = simulationInitialValues;
+        this.budget = budget;//simulationInitialValues.getBudget();
+       // SimulationInitialValuesValidator.validateSimulationForData(data,simulationInitialValues);
     }
 
     public void setData(List<ExchangeRate> data) {
@@ -61,6 +68,7 @@ public class StrategyApplicator implements IStrategyApplicator {
                 } else if (strategy.getDecisionType() == DecisionType.SELL) {
                     budget = budget.add(budget.multiply(strategy.getInvestmentPercentage().multiply(endValue)));
                 }
+
                 strategyResult = new StrategyResult(budget);
             }
         }
