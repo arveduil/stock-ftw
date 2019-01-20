@@ -21,7 +21,7 @@
         <children>
             <VBox layoutX="-42.0" prefHeight="539.0" prefWidth="517.0">
                <children>
-                  <LineChart fx:id="lineChart" prefHeight="276.0" prefWidth="468.0">
+                  <LineChart fx:id="lineChart" prefHeight="329.0" prefWidth="509.0">
                       <xAxis>
                           <CategoryAxis side="BOTTOM" />
                       </xAxis>
@@ -42,7 +42,10 @@
                         <Button fx:id="createStrategyButton" mnemonicParsing="false" onAction="#handleCreateAction" text="Add strategy" />
                      </children>
                   </HBox>
-               </children></VBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding></VBox>
         </children>
     </AnchorPane>
     </center>
@@ -64,7 +67,7 @@
                   <Label text="End Iteration:" />
                   <TextField fx:id="endIterationTextField" />
                   <Button fx:id="runStrategyButton" mnemonicParsing="false" onAction="#runStrategy" text="Run Strategy" />
-                  <Label fx:id="runStrategyMessage" prefHeight="75.0" prefWidth="88.0" wrapText="true"/>
+                  <Label fx:id="runStrategyMessage" prefHeight="75.0" prefWidth="88.0" wrapText="true" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -76,7 +79,7 @@
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <TextFlow accessibleText="adwadsd" prefHeight="275.0" prefWidth="147.0" />
+            <TextFlow accessibleText="adwadsd" prefHeight="275.0" prefWidth="83.0" />
          </children>
       </AnchorPane>
    </left>

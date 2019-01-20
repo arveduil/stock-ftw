@@ -82,7 +82,7 @@ public class MainController {
         this.primaryStage = primaryStage;
         ObservableList<Data<String, Float>> observableList = FXCollections.observableArrayList(rates.stream().map(ExchangeRate::convertToData).collect(Collectors.toList()));
         lineChart.setCursor(Cursor.CROSSHAIR);
-        lineChart.setTitle("Exchange history");
+        lineChart.setTitle("Stock FTW");
         lineChart.setAnimated(false);
 
         for (Data<String, Float> element : observableList) {
