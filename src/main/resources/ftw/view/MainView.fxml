@@ -29,14 +29,12 @@
                           <NumberAxis side="LEFT" />
                       </yAxis>
                   </LineChart>
-                  <TableView fx:id="strategyTable" prefHeight="125.0" prefWidth="440.0">
+                  <TableView fx:id="strategyTable" prefHeight="125.0" prefWidth="437.0">
                     <columns>
                       <TableColumn fx:id="checkIntervalColumn" prefWidth="100.0" text="Check Interval" />
-                       <TableColumn fx:id="changeColumn" prefWidth="51.0" text="Change" />
-                       <TableColumn fx:id="decisionTypeTableColumn" prefWidth="108.0" text="Decision Type" />
-                       <TableColumn fx:id="investmentPercentageColumn" prefWidth="134.0" text="Investment Percentage" />
-                        <TableColumn fx:id="resultColumn" prefWidth="134.0" text="Result" />
-                        <TableColumn prefWidth="88.0" text="Result" />
+                       <TableColumn fx:id="changeColumn" prefWidth="72.0" text="Change" />
+                       <TableColumn fx:id="decisionTypeTableColumn" prefWidth="135.0" text="Decision Type" />
+                       <TableColumn fx:id="investmentPercentageColumn" prefWidth="142.0" text="Investment Percentage" />
                     </columns>
                   </TableView>
                   <HBox prefHeight="100.0" prefWidth="200.0">
@@ -66,7 +64,7 @@
                   <Label text="End Iteration:" />
                   <TextField fx:id="endIterationTextField" />
                   <Button fx:id="runStrategyButton" mnemonicParsing="false" onAction="#runStrategy" text="Run Strategy" />
-                  <Label fx:id="runStrategyMessage" />
+                  <Label fx:id="runStrategyMessage" prefHeight="75.0" prefWidth="88.0" wrapText="true"/>
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

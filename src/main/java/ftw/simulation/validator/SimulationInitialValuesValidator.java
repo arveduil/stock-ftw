@@ -32,8 +32,17 @@ public class SimulationInitialValuesValidator {
     }
 
     public static boolean validateSimulationForData(List<ExchangeRate> rates, SimulationInitialValues values) throws InvalidSimulationInitialValuesException {
-        if(values.getEnd() - values.getStart() > rates.size()){
-            throw new InvalidSimulationInitialValuesException("Simulation range is greater than ammount of data.");
+        if(values.getEnd()-1 > rates.size()){
+            throw new InvalidSimulationInitialValuesException("Simulation end range is greater than ammount of data. End:" + values.getEnd());
+        }
+        if(values.getStart() -1 > rates.size()){
+            throw new InvalidSimulationInitialValuesException("Simulation start range is greater than ammount of data. Start:" +values.getStart());
+        }
+        if(values.getStart()  < 0) {
+            throw new InvalidSimulationInitialValuesException("Simulation start range is less than zero. Start:" + values.getStart());
+        }
+        if(values.getEnd()  < 0){
+                throw new InvalidSimulationInitialValuesException("Simulation end range is less than zero. Start:" +values.getEnd());
         }
 
         return true;

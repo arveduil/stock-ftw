@@ -13,10 +13,10 @@ public class StockModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        /*bind(IDataConnection.class).to(FileDataConnection.class);
-        bind(IDataReader.class).to(FileDataReader.class);*/
-        bind(IDataConnection.class).to(JsonFileDataConnection.class);
-        bind(IDataReader.class).to(JsonDataReader.class);
+        bind(IDataConnection.class).to(FileDataConnection.class);
+        bind(IDataReader.class).to(FileDataReader.class);
+//        bind(IDataConnection.class).to(JsonFileDataConnection.class);
+//        bind(IDataReader.class).to(JsonDataReader.class);
         bind(String.class).annotatedWith(Names.named("fileConnectionFileName")).toInstance("data.txt");
         bind(String.class).annotatedWith(Names.named("jsonConnectionFileName")).toInstance("data.json");
     }

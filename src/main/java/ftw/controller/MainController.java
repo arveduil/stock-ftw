@@ -2,14 +2,21 @@ package ftw.controller;
 
 import ftw.presenter.CreateStrategyPresenter;
 import ftw.sample.Main;
+import ftw.simulation.model.SimulationInitialValues;
+import ftw.simulation.model.exception.NonNumericFormatException;
+import ftw.simulation.validator.SimulationInitialValuesValidator;
+import ftw.stock.ExchangeRate;
+import ftw.stock.data.connection.IDataConnection;
+import ftw.stock.data.connection.exception.DataConnectionException;
+import ftw.stock.data.connection.exception.InvalidDataFormatException;
+import ftw.stock.data.reader.DataUnit;
+import ftw.stock.data.reader.IDataReader;
 import ftw.strategy.DecisionType;
 import ftw.strategy.applicator.StrategyApplicator;
 import ftw.strategy.model.Strategy;
-import ftw.simulation.model.SimulationInitialValues;
 import ftw.strategy.model.exception.InvalidSimulationInitialValuesException;
 import ftw.strategy.model.exception.InvalidStrategyValuesException;
-import ftw.simulation.model.exception.NonNumericFormatException;
-import ftw.simulation.validator.SimulationInitialValuesValidator;
+import ftw.view.HoveredNode;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,13 +27,6 @@ import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
-import ftw.stock.ExchangeRate;
-import ftw.stock.data.connection.IDataConnection;
-import ftw.stock.data.connection.exception.DataConnectionException;
-import ftw.stock.data.connection.exception.InvalidDataFormatException;
-import ftw.stock.data.reader.DataUnit;
-import ftw.stock.data.reader.IDataReader;
-import ftw.view.HoveredNode;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -34,6 +34,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -70,17 +71,12 @@ public class MainController {
     @FXML
     private LineChart lineChart;
 
-    @FXML
-    private TableColumn<Strategy, Boolean> isActiveStrategy;
-
     private List<ExchangeRate> rates = new LinkedList<>();
 
     private Stage primaryStage;
 
     private ObservableList<Strategy> strategies = FXCollections.observableArrayList();
 
-    @FXML
-    private Button createStrategyButton;
 
     public void setData(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -182,16 +178,33 @@ public class MainController {
                 applicator = new StrategyApplicator(rates, strategies, simulationInitialValues);
             } catch (InvalidSimulationInitialValuesException e) {
                 runStrategyMessage.setText(e.getMessage());
+                return;
             }
-            // TODO
-            /*
-            Wywołać applicator.applyStrategies()
-            Pobrać wynik symulacji applicator.getSimulationResult()
-            Pobrać z wyniku mapę data-wynik .getResults()
-            Zbudować wykres
-            Wyświetlić wykres
-             */
+
+            applicator.applyStrategies();
+            Map<Date, BigDecimal> exchangeRateResultMap = applicator.getSimulationResult().getResults();
+
+            drawOnLineChart(exchangeRateResultMap);
         }
 
     }
+
+    private void drawOnLineChart(Map<Date, BigDecimal> exchangeRateResultMap) {
+        ObservableList<Data<String, Float>> observableList = FXCollections.observableArrayList();
+
+        for ( Map.Entry<Date, BigDecimal> entry: exchangeRateResultMap.entrySet())
+        {
+            Data<String,Float> data =new Data<String, Float>(DateFormat.getDateInstance(DateFormat.SHORT).format(entry.getKey()), entry.getValue().floatValue());
+            data.setNode(new HoveredNode(data.getYValue()));
+            observableList.add(data);
+        }
+
+        XYChart.Series series = new XYChart.Series(observableList);
+        series.setName("Simulation results");
+        this.lineChart.getData().clear();
+        this.lineChart.getData().add(series);
+    }
+
+    final double SCALE_DELTA = 1.1;
+
 }
