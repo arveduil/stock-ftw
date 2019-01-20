@@ -1,9 +1,11 @@
-package ftw.controller;
+package ftw.presenter;
 
-import ftw.strategy.model.exception.NonnumericFormatException;
+import ftw.strategy.model.StrategyFactory;
+import ftw.simulation.model.exception.NonNumericFormatException;
 import ftw.strategy.DecisionType;
 import ftw.strategy.model.Strategy;
 import ftw.strategy.model.exception.InvalidStrategyValuesException;
+import ftw.strategy.model.exception.UnknownStrategyDecisionTypeException;
 import ftw.strategy.model.validator.StrategyValidator;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -19,6 +21,7 @@ import java.math.BigDecimal;
 public class CreateStrategyPresenter {
 
     private Stage dialogStage;
+
     private Strategy strategy;
 
     @FXML
@@ -70,7 +73,7 @@ public class CreateStrategyPresenter {
     private boolean parametersOk(String checkIntervalInput, String changeInput, String investmentPercentageInput){
         try {
             StrategyValidator.validateInputForStrategyInitialValues(checkIntervalInput,changeInput,investmentPercentageInput);
-        } catch (NonnumericFormatException  e) {
+        } catch (NonNumericFormatException e) {
             this.messageArea.setText(e.getMessage());
             return false;
         }
@@ -85,9 +88,9 @@ public class CreateStrategyPresenter {
 
     public boolean createStrategy(String checkIntervalInput, String changeInput, String investmentPercentageInput){
         try {
-            this.strategy = new Strategy(Integer.parseInt(checkIntervalInput),new BigDecimal(changeInput),decisionComboBox.getValue(),new BigDecimal(investmentPercentageInput));
+            this.strategy = StrategyFactory.createStrategy(Integer.parseInt(checkIntervalInput), new BigDecimal(changeInput), decisionComboBox.getValue(), new BigDecimal(investmentPercentageInput));
             return true;
-        } catch ( InvalidStrategyValuesException e) {
+        } catch (InvalidStrategyValuesException | UnknownStrategyDecisionTypeException e) {
             this.messageArea.setText(e.getMessage());
         }
         return false;

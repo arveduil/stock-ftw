@@ -7,27 +7,28 @@ import javafx.beans.property.*;
 
 import java.math.BigDecimal;
 
-public class Strategy {
+public abstract class Strategy {
 
-    private ObjectProperty<Integer> checkInterval;
-    private ObjectProperty<BigDecimal> change;
-    private ObjectProperty<DecisionType> decisionType;
-    private ObjectProperty<BigDecimal> investmentPercentage;
-    private BooleanProperty isActiveStrategy;
+    protected ObjectProperty<Integer> checkInterval;
 
+    protected ObjectProperty<BigDecimal> change;
 
-    public Strategy() throws InvalidStrategyValuesException {
-        this(0, BigDecimal.ZERO , DecisionType.BUY , BigDecimal.ZERO);
-    }
+    protected ObjectProperty<DecisionType> decisionType;
+
+    protected ObjectProperty<BigDecimal> investmentPercentage;
+
+    protected BooleanProperty isActiveStrategy;
 
     public Strategy(Integer checkInterval, BigDecimal change, DecisionType decisionType, BigDecimal investmentPercentage) throws InvalidStrategyValuesException {
-        this.checkInterval = new SimpleObjectProperty<Integer>(checkInterval);
-        this.change = new SimpleObjectProperty<BigDecimal>(change);
-        this.decisionType = new SimpleObjectProperty<DecisionType>(decisionType);
-        this.investmentPercentage = new SimpleObjectProperty<BigDecimal>(investmentPercentage);
+        this.checkInterval = new SimpleObjectProperty<>(checkInterval);
+        this.change = new SimpleObjectProperty<>(change);
+        this.decisionType = new SimpleObjectProperty<>(decisionType);
+        this.investmentPercentage = new SimpleObjectProperty<>(investmentPercentage);
         this.isActiveStrategy = new SimpleBooleanProperty(true);
         StrategyValidator.validate(this);
     }
+
+    public abstract BigDecimal apply(BigDecimal initial, BigDecimal change);
 
     public Integer getCheckInterval() {
         return checkInterval.getValue();

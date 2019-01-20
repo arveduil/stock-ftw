@@ -1,15 +1,15 @@
 package ftw.controller;
 
+import ftw.presenter.CreateStrategyPresenter;
 import ftw.sample.Main;
 import ftw.strategy.DecisionType;
 import ftw.strategy.applicator.StrategyApplicator;
 import ftw.strategy.model.Strategy;
-import ftw.strategy.model.SimulationInitialValues;
-import ftw.strategy.model.StrategyResult;
+import ftw.simulation.model.SimulationInitialValues;
 import ftw.strategy.model.exception.InvalidSimulationInitialValuesException;
 import ftw.strategy.model.exception.InvalidStrategyValuesException;
-import ftw.strategy.model.exception.NonnumericFormatException;
-import ftw.strategy.model.validator.SimulationInitialValuesValidator;
+import ftw.simulation.model.exception.NonNumericFormatException;
+import ftw.simulation.validator.SimulationInitialValuesValidator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -42,30 +42,41 @@ public class MainController {
 
     @FXML
     public TextField startIterationTextField;
-    @FXML
-    public TextField initialBudgetTextField;
+
     @FXML
     public TextField endIterationTextField;
+
     @FXML
     public Label runStrategyMessage;
+
     @FXML
     public TableColumn<Strategy, BigDecimal> resultColumn;
+
     @FXML
     private TableView strategyTable;
+
     @FXML
     private TableColumn<Strategy, Integer> checkIntervalColumn;
+
     @FXML
     private TableColumn<Strategy, BigDecimal> changeColumn;
+
     @FXML
     private TableColumn<Strategy, DecisionType> decisionTypeTableColumn;
+
     @FXML
     private TableColumn<Strategy, BigDecimal> investmentPercentageColumn;
+
     @FXML
     private LineChart lineChart;
+
     @FXML
     private TableColumn<Strategy, Boolean> isActiveStrategy;
+
     private List<ExchangeRate> rates = new LinkedList<>();
+
     private Stage primaryStage;
+
     private ObservableList<Strategy> strategies = FXCollections.observableArrayList();
 
     @FXML
@@ -150,14 +161,13 @@ public class MainController {
     }
 
     private SimulationInitialValues createStrategyInitialValues(){
-        String budgetInput = initialBudgetTextField.getText();
-        String  startInput =  startIterationTextField.getText();
+        String startInput = startIterationTextField.getText();
         String endInput = endIterationTextField.getText();
 
         try {
-            SimulationInitialValuesValidator.validateInputForSimulationInitialValues(budgetInput,startInput,endInput);
-            return new SimulationInitialValues(new BigDecimal(budgetInput),Integer.parseInt(startInput),Integer.parseInt(endInput) );
-        } catch (NonnumericFormatException | InvalidSimulationInitialValuesException e) {
+            SimulationInitialValuesValidator.validateInputForSimulationInitialValues(startInput, endInput);
+            return new SimulationInitialValues(Integer.parseInt(startInput), Integer.parseInt(endInput) );
+        } catch (NonNumericFormatException | InvalidSimulationInitialValuesException e) {
             runStrategyMessage.setText(e.getMessage());
             return  null;
         }
@@ -168,16 +178,19 @@ public class MainController {
         SimulationInitialValues simulationInitialValues = createStrategyInitialValues();
         if(simulationInitialValues != null){
             StrategyApplicator applicator;
- //           try {
-                applicator = new StrategyApplicator(rates,strategies,simulationInitialValues.getBudget());
-//            } catch (InvalidSimulationInitialValuesException e) {
-//                runStrategyMessage.setText(e.getMessage());
-//                return;
-//            }
-
-            Map<Strategy, StrategyResult> strategyToStrategyResult = applicator.getStrategyResults();
-
-            resultColumn.setCellValueFactory(dataValue -> strategyToStrategyResult.get(dataValue).getResultProperty());
+            try {
+                applicator = new StrategyApplicator(rates, strategies, simulationInitialValues);
+            } catch (InvalidSimulationInitialValuesException e) {
+                runStrategyMessage.setText(e.getMessage());
+            }
+            // TODO
+            /*
+            Wywołać applicator.applyStrategies()
+            Pobrać wynik symulacji applicator.getSimulationResult()
+            Pobrać z wyniku mapę data-wynik .getResults()
+            Zbudować wykres
+            Wyświetlić wykres
+             */
         }
 
     }

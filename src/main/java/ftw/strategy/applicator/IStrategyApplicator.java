@@ -1,5 +1,6 @@
 package ftw.strategy.applicator;
 
+import ftw.simulation.model.SimulationResult;
 import ftw.stock.ExchangeRate;
 import ftw.stock.data.reader.DataUnit;
 import ftw.strategy.model.Strategy;
@@ -10,11 +11,7 @@ import java.util.List;
 
 public interface IStrategyApplicator {
 
-    public void setData(List<ExchangeRate> data);
+    void applyStrategies();
 
-    public void setStrategies(List<Strategy> strategies);
-
-    public void setInitialBudget(BigDecimal initialBudget);
-
-    public void applyStrategies();
+    SimulationResult getSimulationResult();
 }

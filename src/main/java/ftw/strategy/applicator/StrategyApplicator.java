@@ -1,17 +1,18 @@
 package ftw.strategy.applicator;
 
+import ftw.simulation.model.SimulationResult;
 import ftw.stock.ExchangeRate;
-import ftw.strategy.DecisionType;
 import ftw.strategy.model.Strategy;
-import ftw.strategy.model.SimulationInitialValues;
-import ftw.strategy.model.StrategyResult;
+import ftw.simulation.model.SimulationInitialValues;
 import ftw.strategy.model.exception.InvalidSimulationInitialValuesException;
-import ftw.strategy.model.validator.SimulationInitialValuesValidator;
+import ftw.simulation.validator.SimulationInitialValuesValidator;
+import javafx.beans.property.IntegerProperty;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 public class StrategyApplicator implements IStrategyApplicator {
 
@@ -19,60 +20,90 @@ public class StrategyApplicator implements IStrategyApplicator {
 
     private List<Strategy> strategies;
 
-    private Map<Strategy, StrategyResult> strategyResults = new HashMap<Strategy, StrategyResult>();
-
-    private BigDecimal budget;
-
     private SimulationInitialValues simulationInitialValues;
 
-    public StrategyApplicator(List<ExchangeRate> data, List<Strategy> strategies, BigDecimal budget) {
-        this.data = data;
-        this.strategies = strategies;
-       //this.simulationInitialValues = simulationInitialValues;
-        this.budget = budget;//simulationInitialValues.getBudget();
-       // SimulationInitialValuesValidator.validateSimulationForData(data,simulationInitialValues);
-    }
+    private SimulationResult result;
 
-    public void setData(List<ExchangeRate> data) {
-        this.data = data;
-    }
-
-    public void setStrategies(List<Strategy> strategies) {
-        this.strategies = strategies;
-    }
-
-    public void setInitialBudget(BigDecimal initialBudget) {
-        this.budget = initialBudget;
-    }
-
-    public void applyStrategies() {
-        for (Strategy strategy : strategies) {
-            strategyResults.put(strategy, applyStrategy(strategy));
+    public StrategyApplicator(List<ExchangeRate> data, List<Strategy> strategies, SimulationInitialValues simulationInitialValues)
+            throws InvalidSimulationInitialValuesException {
+        SimulationInitialValuesValidator.validateSimulationForData(data, simulationInitialValues);
+        this.data = new ArrayList<>();
+        for (int i = simulationInitialValues.getStart(); i <= simulationInitialValues.getEnd(); i++) {
+            this.data.add(new ExchangeRate(data.get(i).getValue(), data.get(i).getDate()));
         }
+        this.strategies = strategies;
+        this.simulationInitialValues = simulationInitialValues;
     }
 
-    public Map<Strategy, StrategyResult> getStrategyResults() {
-        return strategyResults;
-    }
+    @Override
+    public void applyStrategies() {
+        List<BigDecimal> results = new ArrayList<>();
+        for (int i = simulationInitialValues.getStart(); i <= simulationInitialValues.getEnd(); i++) {
+            results.add(new BigDecimal(1.0));
+        }
 
-    private StrategyResult applyStrategy(Strategy strategy) {
-        StrategyResult strategyResult = null;
-        Integer checkInterval = strategy.getCheckInterval();
-        for (int i = 0; i < data.size() - checkInterval; i++) {
-            BigDecimal startValue = data.get(i).getValue();
-            BigDecimal endValue = data.get(i + checkInterval).getValue();
-            BigDecimal change = endValue.subtract(startValue).divide(startValue, BigDecimal.ROUND_HALF_EVEN);
-            if (change.compareTo(strategy.getChange()) > 0) {
-                if (strategy.getDecisionType() == DecisionType.BUY) {
-                    budget = budget.subtract(budget.multiply(strategy.getInvestmentPercentage().multiply(endValue)));
-                } else if (strategy.getDecisionType() == DecisionType.SELL) {
-                    budget = budget.add(budget.multiply(strategy.getInvestmentPercentage().multiply(endValue)));
+        List<Strategy> sortedStrategies = sortStrategiesByApplicationDate(strategies);
+
+        for (Strategy strategy : sortedStrategies) {
+            Integer checkInterval = strategy.getCheckInterval();
+            for (int i = checkInterval; i < data.size(); i++) {
+                BigDecimal startValue = data.get(i - checkInterval).getValue();
+                BigDecimal endValue = data.get(i).getValue();
+                BigDecimal change = endValue.subtract(startValue).divide(startValue, BigDecimal.ROUND_HALF_EVEN);
+                if (change.compareTo(strategy.getChange()) > 0) {
+                    results = updateResultsAfterStrategyApplication(results, strategy.apply(results.get(i), change), i);
+                    break;
                 }
-
-                strategyResult = new StrategyResult(budget);
             }
         }
 
-        return strategyResult;
+        List<Date> dates = new LinkedList<>();
+        for (ExchangeRate rates : data) {
+            dates.add(rates.getDate());
+        }
+        this.result = new SimulationResult(dates, results);
+    }
+
+    private List<Strategy> sortStrategiesByApplicationDate(List<Strategy> strategies) {
+
+        List<List<Strategy>> strategyDateBuckets = new LinkedList<>();
+        for (int i = simulationInitialValues.getStart(); i <= simulationInitialValues.getEnd(); i++) {
+            strategyDateBuckets.add(new LinkedList<>());
+        }
+
+        for (Strategy strategy : strategies) {
+            Integer checkInterval = strategy.getCheckInterval();
+            for (int i = checkInterval; i < data.size(); i++) {
+                BigDecimal startValue = data.get(i - checkInterval).getValue();
+                BigDecimal endValue = data.get(i).getValue();
+                BigDecimal change = endValue.subtract(startValue).divide(startValue, BigDecimal.ROUND_HALF_EVEN);
+                if (change.compareTo(strategy.getChange()) > 0) {
+                    strategyDateBuckets.get(i).add(strategy);
+                    break;
+                }
+            }
+        }
+
+        List<Strategy> sortedStrategies = new LinkedList<>();
+        for (List<Strategy> bucket : strategyDateBuckets) {
+            sortedStrategies.addAll(bucket);
+        }
+
+        return sortedStrategies;
+    }
+
+    private List<BigDecimal> updateResultsAfterStrategyApplication(List<BigDecimal> currentResults,
+                                                                   BigDecimal strategyApplicationResult,
+                                                                   int strategyApplicationPosition) {
+        for (int i = strategyApplicationPosition; i < currentResults.size(); i++) {
+            currentResults.set(i, strategyApplicationResult);
+        }
+
+        return currentResults;
+    }
+
+    @Override
+    public SimulationResult getSimulationResult() {
+        return result;
     }
 }

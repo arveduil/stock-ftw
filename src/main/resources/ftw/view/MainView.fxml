@@ -61,8 +61,6 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label text="Initial Budget:" />
-                  <TextField fx:id="initialBudgetTextField" />
                   <Label text="Start iteration:" />
                   <TextField fx:id="startIterationTextField" />
                   <Label text="End Iteration:" />
