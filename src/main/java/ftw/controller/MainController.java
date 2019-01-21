@@ -7,20 +7,15 @@ import ftw.simulation.model.exception.NonNumericFormatException;
 import ftw.simulation.validator.SimulationInitialValuesValidator;
 import ftw.stock.ExchangeRate;
 import ftw.stock.data.FileProcessor;
-import ftw.stock.data.connection.JsonFileDataConnection;
-import ftw.stock.data.connection.TxtFileDataConnection;
 import ftw.stock.data.connection.IDataConnection;
 import ftw.stock.data.connection.exception.DataConnectionException;
 import ftw.stock.data.connection.exception.InvalidDataFormatException;
 import ftw.stock.data.reader.DataUnit;
-import ftw.stock.data.reader.JsonDataReader;
-import ftw.stock.data.reader.TxtDataReader;
 import ftw.stock.data.reader.IDataReader;
 import ftw.strategy.DecisionType;
 import ftw.strategy.applicator.StrategyApplicator;
 import ftw.strategy.model.Strategy;
 import ftw.strategy.model.exception.InvalidSimulationInitialValuesException;
-import ftw.strategy.model.exception.InvalidStrategyValuesException;
 import ftw.view.HoveredNode;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -85,8 +80,6 @@ public class MainController {
 
     private final FileChooser fileChooser = new FileChooser();
 
-    private Desktop desktop = Desktop.getDesktop();
-
     public void setPrimaryStage(Stage primaryStage)
     {
         this.primaryStage = primaryStage;
@@ -128,6 +121,7 @@ public class MainController {
         fileChooser.setTitle("Load stock data");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("TXT", "*.txt"),
+                new FileChooser.ExtensionFilter("XLS", "*.xls"),
                 new FileChooser.ExtensionFilter("JSON", "*.json")
         );
     }
