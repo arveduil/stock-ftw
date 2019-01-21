@@ -13,15 +13,14 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.TextFlow?>
 
-<BorderPane prefHeight="500.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ftw.controller.MainController">
+<BorderPane prefHeight="500.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ftw.controller.MainController">
     <center>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="451.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
         <children>
             <VBox layoutX="-42.0" prefHeight="539.0" prefWidth="517.0">
                <children>
-                  <LineChart fx:id="lineChart" prefHeight="329.0" prefWidth="509.0">
+                  <LineChart fx:id="lineChart" prefHeight="317.0" prefWidth="490.0">
                       <xAxis>
                           <CategoryAxis side="BOTTOM" />
                       </xAxis>
@@ -58,19 +57,24 @@
 
    </right>
    <right>
-      <AnchorPane prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="539.0" prefWidth="121.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="283.0" prefWidth="120.0">
                <children>
                   <Label text="Start iteration:" />
                   <TextField fx:id="startIterationTextField" />
                   <Label text="End Iteration:" />
                   <TextField fx:id="endIterationTextField" />
-                  <Button fx:id="runStrategyButton" mnemonicParsing="false" onAction="#runStrategy" text="Run Strategy" />
-                  <Label fx:id="runStrategyMessage" prefHeight="75.0" prefWidth="88.0" wrapText="true">
-                     <graphic>
-                        <Button fx:id="openFileButton" onAction="#handleOpenFile" prefHeight="43.0" prefWidth="88.0" text="Open File" />
-                     </graphic></Label>
+                  <Button fx:id="runStrategyButton" mnemonicParsing="false" onAction="#runStrategy" prefHeight="25.0" prefWidth="88.0" text="Run Strategy">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="openFileButton" onAction="#handleOpenFile" prefHeight="43.0" prefWidth="88.0" text="Open File">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Label fx:id="runStrategyMessage" prefHeight="136.0" prefWidth="96.0" wrapText="true" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -81,9 +85,6 @@
    </right>
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <TextFlow accessibleText="adwadsd" prefHeight="275.0" prefWidth="83.0" />
-         </children>
       </AnchorPane>
    </left>
 </BorderPane>

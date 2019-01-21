@@ -60,9 +60,6 @@ public class MainController {
     public Label runStrategyMessage;
 
     @FXML
-    public TableColumn<Strategy, BigDecimal> resultColumn;
-
-    @FXML
     private TableView strategyTable;
 
     @FXML
@@ -158,7 +155,7 @@ public class MainController {
     }
 
     @FXML
-    private void handleCreateAction(ActionEvent event) throws InvalidStrategyValuesException {
+    private void handleCreateAction(ActionEvent event)  {
         Strategy createdStrategy = showAddStrategy();
         if (createdStrategy != null) {
             strategies.add(createdStrategy);
@@ -240,7 +237,4 @@ public class MainController {
         this.lineChart.getData().clear();
         this.lineChart.getData().add(series);
     }
-
-    final double SCALE_DELTA = 1.1;
-
 }
