@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.TextFlow?>
 
-<BorderPane prefHeight="500.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ftw.controller.MainController">
+<BorderPane prefHeight="500.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ftw.controller.MainController">
     <center>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="451.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
         <children>
@@ -29,7 +29,7 @@
                           <NumberAxis side="LEFT" />
                       </yAxis>
                   </LineChart>
-                  <TableView fx:id="strategyTable" prefHeight="125.0" prefWidth="437.0">
+                  <TableView fx:id="strategyTable" prefHeight="107.0" prefWidth="502.0">
                     <columns>
                       <TableColumn fx:id="checkIntervalColumn" prefWidth="100.0" text="Check Interval" />
                        <TableColumn fx:id="changeColumn" prefWidth="72.0" text="Change" />
@@ -67,7 +67,10 @@
                   <Label text="End Iteration:" />
                   <TextField fx:id="endIterationTextField" />
                   <Button fx:id="runStrategyButton" mnemonicParsing="false" onAction="#runStrategy" text="Run Strategy" />
-                  <Label fx:id="runStrategyMessage" prefHeight="75.0" prefWidth="88.0" wrapText="true" />
+                  <Label fx:id="runStrategyMessage" prefHeight="75.0" prefWidth="88.0" wrapText="true">
+                     <graphic>
+                        <Button fx:id="openFileButton" onAction="#handleOpenFile" prefHeight="43.0" prefWidth="88.0" text="Open File" />
+                     </graphic></Label>
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

@@ -6,10 +6,15 @@ import ftw.simulation.model.SimulationInitialValues;
 import ftw.simulation.model.exception.NonNumericFormatException;
 import ftw.simulation.validator.SimulationInitialValuesValidator;
 import ftw.stock.ExchangeRate;
+import ftw.stock.data.FileProcessor;
+import ftw.stock.data.connection.JsonFileDataConnection;
+import ftw.stock.data.connection.TxtFileDataConnection;
 import ftw.stock.data.connection.IDataConnection;
 import ftw.stock.data.connection.exception.DataConnectionException;
 import ftw.stock.data.connection.exception.InvalidDataFormatException;
 import ftw.stock.data.reader.DataUnit;
+import ftw.stock.data.reader.JsonDataReader;
+import ftw.stock.data.reader.TxtDataReader;
 import ftw.stock.data.reader.IDataReader;
 import ftw.strategy.DecisionType;
 import ftw.strategy.applicator.StrategyApplicator;
@@ -29,9 +34,13 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.awt.Desktop;
+
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DateFormat;
@@ -77,9 +86,17 @@ public class MainController {
 
     private ObservableList<Strategy> strategies = FXCollections.observableArrayList();
 
+    private final FileChooser fileChooser = new FileChooser();
 
-    public void setData(Stage primaryStage) {
+    private Desktop desktop = Desktop.getDesktop();
+
+    public void setPrimaryStage(Stage primaryStage)
+    {
         this.primaryStage = primaryStage;
+    }
+
+
+    public void setData() {
         ObservableList<Data<String, Float>> observableList = FXCollections.observableArrayList(rates.stream().map(ExchangeRate::convertToData).collect(Collectors.toList()));
         lineChart.setCursor(Cursor.CROSSHAIR);
         lineChart.setTitle("Stock FTW");
@@ -94,6 +111,7 @@ public class MainController {
         this.lineChart.getData().add(series);
 
         this.strategyTable.setItems(this.strategies);
+
     }
 
     @FXML
@@ -109,6 +127,12 @@ public class MainController {
                 .getDecisionTypeProperty());
         investmentPercentageColumn.setCellValueFactory(dataValue -> dataValue.getValue()
                 .getInvestmentPercentageProperty());
+
+        fileChooser.setTitle("Load stock data");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("TXT", "*.txt"),
+                new FileChooser.ExtensionFilter("JSON", "*.json")
+        );
     }
 
     private Strategy showAddStrategy() {
@@ -141,11 +165,23 @@ public class MainController {
         }
     }
 
+    @FXML
+    private void handleOpenFile(ActionEvent event) {
+        File file = fileChooser.showOpenDialog(primaryStage);
+        if (file != null) {
+            FileProcessor processor = new FileProcessor(file);
+            processor.process();
+            IDataConnection connection = processor.getConnection();
+            IDataReader reader = processor.getReader();
+            loadData(connection, reader, file);
+            setData();
+        }
+    }
 
-    public <T> void loadData(IDataConnection<T> connection, IDataReader<T> reader) {
+    public <T> void loadData(IDataConnection<T> connection, IDataReader<T> reader, File file) {
 
         try {
-            connection.connect();
+            connection.connect(file);
             reader.makeDataUnits(connection.getRawData());
             Collection<DataUnit> units = reader.getDataUnits();
             for (DataUnit unit : units) {

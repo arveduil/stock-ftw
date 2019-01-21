@@ -37,23 +37,7 @@ public class Main extends Application {
         Scene scene = new Scene(rootLayout);
         primaryStage.setScene(scene);
         primaryStage.show();
-
         MainController controller = loader.getController();
-        IDataConnection connection = setupConnector();
-        IDataReader reader = setupReader();
-        controller.loadData(connection, reader);
-        controller.setData(primaryStage);
-    }
-
-    private IDataConnection setupConnector() {
-        Injector injector = Guice.createInjector(new StockModule());
-        IDataConnection connection = injector.getInstance(IDataConnection.class);
-        return connection;
-    }
-
-    private IDataReader setupReader() {
-        Injector injector = Guice.createInjector(new StockModule());
-        IDataReader reader = injector.getInstance(IDataReader.class);
-        return reader;
+        controller.setPrimaryStage(primaryStage);
     }
 }

@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-public class FileDataReader implements IDataReader<List<String>> {
+public class TxtDataReader implements IDataReader<List<String>> {
 
     private Collection<DataUnit> dataUnits = new LinkedList<>();
 
