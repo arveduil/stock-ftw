@@ -37,6 +37,9 @@ public class FileProcessor {
         } else if (extension.equals("json")) {
             reader = injector.getInstance(Key.get(IDataReader.class, Names.named("json")));
             connection = injector.getInstance(Key.get(IDataConnection.class, Names.named("json")));
+        } else if (extension.equals("xls")) {
+            reader = injector.getInstance(Key.get(IDataReader.class, Names.named("xls")));
+            connection = injector.getInstance(Key.get(IDataConnection.class, Names.named("xls")));
         }
     }
 

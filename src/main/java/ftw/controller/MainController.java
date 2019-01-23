@@ -121,6 +121,7 @@ public class MainController {
         fileChooser.setTitle("Load stock data");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("TXT", "*.txt"),
+                new FileChooser.ExtensionFilter("XLS", "*.xls"),
                 new FileChooser.ExtensionFilter("JSON", "*.json")
         );
     }
