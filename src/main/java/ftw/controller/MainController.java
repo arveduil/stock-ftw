@@ -7,20 +7,15 @@ import ftw.simulation.model.exception.NonNumericFormatException;
 import ftw.simulation.validator.SimulationInitialValuesValidator;
 import ftw.stock.ExchangeRate;
 import ftw.stock.data.FileProcessor;
-import ftw.stock.data.connection.JsonFileDataConnection;
-import ftw.stock.data.connection.TxtFileDataConnection;
 import ftw.stock.data.connection.IDataConnection;
 import ftw.stock.data.connection.exception.DataConnectionException;
 import ftw.stock.data.connection.exception.InvalidDataFormatException;
 import ftw.stock.data.reader.DataUnit;
-import ftw.stock.data.reader.JsonDataReader;
-import ftw.stock.data.reader.TxtDataReader;
 import ftw.stock.data.reader.IDataReader;
 import ftw.strategy.DecisionType;
 import ftw.strategy.applicator.StrategyApplicator;
 import ftw.strategy.model.Strategy;
 import ftw.strategy.model.exception.InvalidSimulationInitialValuesException;
-import ftw.strategy.model.exception.InvalidStrategyValuesException;
 import ftw.view.HoveredNode;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -85,15 +80,14 @@ public class MainController {
 
     private final FileChooser fileChooser = new FileChooser();
 
-    private Desktop desktop = Desktop.getDesktop();
-
     public void setPrimaryStage(Stage primaryStage)
     {
         this.primaryStage = primaryStage;
     }
 
 
-    public void setData() {
+    private void drawDataOnLineChart() {
+        this.clearLineChart();
         ObservableList<Data<String, Float>> observableList = FXCollections.observableArrayList(rates.stream().map(ExchangeRate::convertToData).collect(Collectors.toList()));
         lineChart.setCursor(Cursor.CROSSHAIR);
         lineChart.setTitle("Stock FTW");
@@ -106,9 +100,6 @@ public class MainController {
         series.setName("Exchange rate");
 
         this.lineChart.getData().add(series);
-
-        this.strategyTable.setItems(this.strategies);
-
     }
 
     @FXML
@@ -124,6 +115,8 @@ public class MainController {
                 .getDecisionTypeProperty());
         investmentPercentageColumn.setCellValueFactory(dataValue -> dataValue.getValue()
                 .getInvestmentPercentageProperty());
+
+        this.strategyTable.setItems(this.strategies);
 
         fileChooser.setTitle("Load stock data");
         fileChooser.getExtensionFilters().addAll(
@@ -170,12 +163,13 @@ public class MainController {
             processor.process();
             IDataConnection connection = processor.getConnection();
             IDataReader reader = processor.getReader();
-            loadData(connection, reader, file);
-            setData();
+            cleanAndloadData(connection, reader, file);
+            drawDataOnLineChart();
         }
     }
 
-    public <T> void loadData(IDataConnection<T> connection, IDataReader<T> reader, File file) {
+    private <T> void cleanAndloadData(IDataConnection<T> connection, IDataReader<T> reader, File file) {
+        rates.clear();
 
         try {
             connection.connect(file);
@@ -234,7 +228,11 @@ public class MainController {
 
         XYChart.Series series = new XYChart.Series(observableList);
         series.setName("Simulation results");
-        this.lineChart.getData().clear();
+        clearLineChart();
         this.lineChart.getData().add(series);
+    }
+
+    private void clearLineChart() {
+        this.lineChart.getData().clear();
     }
 }
