@@ -199,11 +199,9 @@ public class MainController {
 
     @FXML
     public void runStrategy(ActionEvent actionEvent) {
-        SimulationInitialValues simulationInitialValues = createStrategyInitialValues();
-        if(simulationInitialValues != null){
             StrategyApplicator applicator;
             try {
-                applicator = new StrategyApplicator(rates, strategies, simulationInitialValues);
+                applicator = new StrategyApplicator(rates, strategies);
             } catch (InvalidSimulationInitialValuesException e) {
                 runStrategyMessage.setText(e.getMessage());
                 return;
@@ -213,8 +211,6 @@ public class MainController {
             Map<Date, BigDecimal> exchangeRateResultMap = applicator.getSimulationResult().getResults();
 
             drawOnLineChart(exchangeRateResultMap);
-        }
-
     }
 
     private void drawOnLineChart(Map<Date, BigDecimal> exchangeRateResultMap) {

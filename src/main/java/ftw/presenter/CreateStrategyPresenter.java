@@ -40,22 +40,11 @@ public class CreateStrategyPresenter {
     TextField investmentPercentageTextField;
 
     @FXML
-    Label messageArea;
+    Label messageLabel;
 
     @FXML
     public void initialize() {
         decisionComboBox.setItems(FXCollections.observableArrayList(DecisionType.values()));
-
-        checkIntervalTextField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    investmentPercentageTextField.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
-
         decisionComboBox.setValue(DecisionType.BUY);
     }
 
@@ -74,7 +63,7 @@ public class CreateStrategyPresenter {
         try {
             StrategyValidator.validateInputForStrategyInitialValues(checkIntervalInput,changeInput,investmentPercentageInput);
         } catch (NonNumericFormatException e) {
-            this.messageArea.setText(e.getMessage());
+            this.messageLabel.setText(e.getMessage());
             return false;
         }
 
@@ -91,7 +80,7 @@ public class CreateStrategyPresenter {
             this.strategy = StrategyFactory.createStrategy(Integer.parseInt(checkIntervalInput), new BigDecimal(changeInput), decisionComboBox.getValue(), new BigDecimal(investmentPercentageInput));
             return true;
         } catch (InvalidStrategyValuesException | UnknownStrategyDecisionTypeException e) {
-            this.messageArea.setText(e.getMessage());
+            this.messageLabel.setText(e.getMessage());
         }
         return false;
     }

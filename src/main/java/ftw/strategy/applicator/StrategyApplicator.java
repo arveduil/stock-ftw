@@ -2,6 +2,7 @@ package ftw.strategy.applicator;
 
 import ftw.simulation.model.SimulationResult;
 import ftw.stock.ExchangeRate;
+import ftw.strategy.DecisionType;
 import ftw.strategy.model.Strategy;
 import ftw.simulation.model.SimulationInitialValues;
 import ftw.strategy.model.exception.InvalidSimulationInitialValuesException;
@@ -20,42 +21,62 @@ public class StrategyApplicator implements IStrategyApplicator {
 
     private List<Strategy> strategies;
 
-    private SimulationInitialValues simulationInitialValues;
-
     private SimulationResult result;
 
-    public StrategyApplicator(List<ExchangeRate> data, List<Strategy> strategies, SimulationInitialValues simulationInitialValues)
+    public StrategyApplicator(List<ExchangeRate> data, List<Strategy> strategies)
             throws InvalidSimulationInitialValuesException {
-        SimulationInitialValuesValidator.validateSimulationForData(data, simulationInitialValues);
         this.data = new ArrayList<>();
-        for (int i = simulationInitialValues.getStart(); i <= simulationInitialValues.getEnd(); i++) {
-            this.data.add(new ExchangeRate(data.get(i).getValue(), data.get(i).getDate()));
-        }
+        this.data = data;
         this.strategies = strategies;
-        this.simulationInitialValues = simulationInitialValues;
     }
 
     @Override
     public void applyStrategies() {
         List<BigDecimal> results = new ArrayList<>();
-        for (int i = simulationInitialValues.getStart(); i <= simulationInitialValues.getEnd(); i++) {
-            results.add(new BigDecimal(1.0));
-        }
 
         List<Strategy> sortedStrategies = sortStrategiesByApplicationDate(strategies);
+        BigDecimal budgetMainInitial = new BigDecimal(1);
+        BigDecimal budgetOther = new BigDecimal(0);
+        BigDecimal moneyToChange;
 
-        for (Strategy strategy : sortedStrategies) {
-            Integer checkInterval = strategy.getCheckInterval();
-            for (int i = checkInterval; i < data.size(); i++) {
-                BigDecimal startValue = data.get(i - checkInterval).getValue();
-                BigDecimal endValue = data.get(i).getValue();
-                BigDecimal change = endValue.subtract(startValue).divide(startValue, BigDecimal.ROUND_HALF_EVEN);
-                if (change.compareTo(strategy.getChange()) > 0) {
-                    results = updateResultsAfterStrategyApplication(results, strategy.apply(results.get(i), change), i);
-                    break;
+        for(int i= 0; i<data.size();i++){
+            BigDecimal currentBudget= budgetMainInitial;
+            for(Strategy strategy :strategies){
+                if( i >= strategy.getCheckInterval() && (i - strategy.getCheckInterval()>= 0)){
+                    BigDecimal startValue = data.get(i - strategy.getCheckInterval()).getValue();
+                    BigDecimal endValue = data.get(i).getValue();
+                    BigDecimal change = endValue.subtract(startValue).divide(startValue, BigDecimal.ROUND_HALF_EVEN);
+                    if(strategy.getDecisionType().equals(DecisionType.SELL)){
+                        if(change.multiply(strategy.getChange()).compareTo(BigDecimal.ZERO) > 0 && change.abs().compareTo(strategy.getChange()) > 0){
+                            //results = updateResultsAfterStrategyApplication(results, strategy.apply(results.get(i), change), i);
+                            moneyToChange = budgetMainInitial.multiply(strategy.getInvestmentPercentage());
+                            budgetMainInitial =budgetMainInitial.subtract(moneyToChange);
+                            budgetOther = moneyToChange.multiply(data.get(i).getValue());
+                            currentBudget = budgetMainInitial;
+                        }
+                    }
+
+                    if(strategy.getDecisionType().equals(DecisionType.BUY)){
+                        if(change.multiply(strategy.getChange()).compareTo(BigDecimal.ZERO) > 0 && change.abs().compareTo(strategy.getChange()) > 0){
+                            //results = updateResultsAfterStrategyApplication(results, strategy.apply(results.get(i), change), i);
+                            moneyToChange = budgetOther.multiply(strategy.getInvestmentPercentage());
+                            budgetOther =budgetOther.subtract(moneyToChange);
+                            budgetMainInitial = moneyToChange.multiply(data.get(i).getValue());
+
+                            currentBudget = budgetMainInitial;
+                        }
+                    }
                 }
             }
+
+            if(i==data.size()-1){
+                currentBudget = budgetMainInitial.add(budgetOther.multiply(data.get(i).getValue()));
+            }
+
+            results.add(currentBudget);
         }
+
+       // budgetMainInitial = budgetMainInitial.add(budgetOther.multiply(data.get(data.size()-1).getValue()));
 
         List<Date> dates = new LinkedList<>();
         for (ExchangeRate rates : data) {
@@ -67,7 +88,7 @@ public class StrategyApplicator implements IStrategyApplicator {
     private List<Strategy> sortStrategiesByApplicationDate(List<Strategy> strategies) {
 
         List<List<Strategy>> strategyDateBuckets = new LinkedList<>();
-        for (int i = simulationInitialValues.getStart(); i <= simulationInitialValues.getEnd(); i++) {
+        for (ExchangeRate d: this.data) {
             strategyDateBuckets.add(new LinkedList<>());
         }
 

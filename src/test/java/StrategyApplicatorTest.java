@@ -25,7 +25,7 @@ public class StrategyApplicatorTest {
 
         BigDecimal budget = new BigDecimal(1.0);
         SimulationInitialValues simulationInitialValues = new SimulationInitialValues(0, 2);
-        StrategyApplicator applicator = new StrategyApplicator(exchangeRates, strategies, simulationInitialValues);
+        StrategyApplicator applicator = new StrategyApplicator(exchangeRates, strategies);
         applicator.applyStrategies();
         BigDecimal start = new BigDecimal(25.0);
         BigDecimal end = new BigDecimal(50.0);
@@ -46,7 +46,7 @@ public class StrategyApplicatorTest {
 
         BigDecimal budget = new BigDecimal(1.0);
         SimulationInitialValues simulationInitialValues = new SimulationInitialValues(0, 3);
-        StrategyApplicator applicator = new StrategyApplicator(exchangeRates, strategies, simulationInitialValues);
+        StrategyApplicator applicator = new StrategyApplicator(exchangeRates, strategies);
         applicator.applyStrategies();
 
         BigDecimal start = new BigDecimal(25.0);
